@@ -6,9 +6,17 @@
 
 Next.js 16 · React 19 · TypeScript · Tailwind CSS v4
 
-[시작하기](#-시작하기) · [기능](#-기능) · [기술 스택](#-기술-스택) · [프로젝트 구조](#-프로젝트-구조) · [테스트](#-테스트) · [문서](#-문서)
+[데모](#-데모) · [시작하기](#-시작하기) · [기능](#-기능) · [기술 스택](#-기술-스택) · [프로젝트 구조](#-프로젝트-구조) · [테스트](#-테스트) · [문서](#-문서)
 
 </div>
+
+---
+
+## 🌐 데모
+
+**https://enrollment-three.vercel.app/**
+
+MSW로 API를 모킹한 데모 환경입니다. 백엔드 서버 없이 동작하므로 **아무 이메일과 비밀번호를 입력하면 로그인**할 수 있습니다. 회원가입, 강의 목록, 수강 신청, 강의 개설 등 기본 기능과 UI 구성을 자유롭게 확인해볼 수 있습니다.
 
 ---
 
@@ -269,3 +277,27 @@ pnpm type-check
 | `pnpm type-check` | TypeScript 타입 검사        |
 | `pnpm test`       | 테스트 실행 (1회)           |
 | `pnpm test:watch` | 테스트 워치 모드            |
+
+---
+
+## 트러블슈팅
+
+### `Error: no matching decryption secret`
+
+**증상**: Server Action 호출 시 500 에러와 함께 `no matching decryption secret` 메시지 출력
+
+**원인**: 브라우저에 저장된 JWT 세션 쿠키가 현재 `AUTH_SECRET`과 다른 secret으로 암호화되어 복호화 실패
+
+주로 다음 상황에서 발생합니다:
+
+- `AUTH_SECRET` 값을 변경하거나 `npx auth secret`을 재실행한 경우
+- `.env` 파일 없이 서버를 시작하여 NextAuth가 임시 secret을 자동 생성한 경우 (재시작마다 값이 달라짐)
+
+**해결 방법**:
+
+1. 브라우저 개발자 도구(F12) → Application → Cookies → `authjs.session-token` 쿠키 삭제
+2. 다시 로그인
+
+> **팁**: 시크릿 탭(Incognito)에서 테스트하면 쿠키 충돌 없이 빠르게 확인할 수 있습니다.
+
+> **예방**: `AUTH_SECRET`은 한 번 설정한 후 변경하지 않는 것이 좋습니다. `npx auth secret`을 반복 실행하면 기존 세션이 모두 무효화됩니다.
