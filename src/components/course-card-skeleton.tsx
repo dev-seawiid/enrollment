@@ -3,12 +3,12 @@ import { Skeleton } from "@/components/ui/skeleton";
 export function CourseCardSkeleton() {
   return (
     <div
-      className="rounded-2xl border p-4"
+      className="rounded-xl border p-3"
       style={{ background: "#121620", borderColor: "rgba(234,229,220,0.09)" }}
     >
-      <div className="flex items-start gap-3">
+      <div className="flex items-start gap-2.5">
         {/* Checkbox */}
-        <Skeleton className="mt-0.5 h-5 w-5 flex-shrink-0 rounded-md" />
+        <Skeleton className="mt-0.5 h-[18px] w-[18px] flex-shrink-0 rounded-[5px]" />
 
         <div className="min-w-0 flex-1 space-y-3">
           {/* Title */}

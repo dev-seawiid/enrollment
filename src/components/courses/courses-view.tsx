@@ -61,7 +61,7 @@ export function CoursesView() {
     <>
       <CoursesHeader sort={sort} onSortChange={handleSortChange} />
 
-      <main className="flex-1 px-4 pt-[110px] pb-32">
+      <main className="flex-1 px-3 pt-[100px] pb-28">
         <CourseList
           courses={courses}
           isLoading={isLoading}

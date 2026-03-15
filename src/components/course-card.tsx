@@ -44,16 +44,16 @@ function CourseCardContent({
 
   return (
     <>
-      <h2 className="text-ivory text-sm leading-snug font-semibold">{title}</h2>
+      <h2 className="text-ivory text-[13px] leading-snug font-semibold">{title}</h2>
 
-      <p className="text-warm-gray mt-1 text-xs">강사: {instructorName}</p>
+      <p className="text-warm-gray mt-0.5 text-[11px]">강사: {instructorName}</p>
 
-      <div className="mt-3">
-        <div className="mb-1.5 flex items-center justify-between">
-          <span className="text-[11px]" style={{ color: barColor }}>
+      <div className="mt-2">
+        <div className="mb-1 flex items-center justify-between">
+          <span className="text-[10px]" style={{ color: barColor }}>
             {currentStudents}/{maxStudents}명
           </span>
-          <span className="text-warm-gray text-[11px]">{Math.round(rate * 100)}%</span>
+          <span className="text-warm-gray text-[10px]">{Math.round(rate * 100)}%</span>
         </div>
         <div className="h-1 overflow-hidden rounded-full" style={PROGRESS_BAR_BG_STYLE}>
           <m.div
@@ -66,7 +66,7 @@ function CourseCardContent({
         </div>
       </div>
 
-      <p className="text-gold-light mt-3 text-sm font-semibold tabular-nums">
+      <p className="text-gold-light mt-2 text-[13px] font-semibold tabular-nums">
         ₩{price.toLocaleString()}
       </p>
     </>
@@ -98,7 +98,7 @@ export function SelectableCourseCard({
       onClick={() => {
         if (!disabled) onToggle(course.id, course.isFull);
       }}
-      className="relative cursor-pointer overflow-hidden rounded-2xl border p-4 transition-colors duration-200"
+      className="relative cursor-pointer overflow-hidden rounded-xl border p-3 transition-colors duration-200"
       style={{
         background: isSelected ? "rgba(194,149,79,0.07)" : "#121620",
         borderColor: isSelected
@@ -120,11 +120,11 @@ export function SelectableCourseCard({
         />
       ) : null}
 
-      <div className="relative flex items-start gap-3">
+      <div className="relative flex items-start gap-2.5">
         {/* Checkbox */}
         <div className="mt-0.5 flex-shrink-0">
           <div
-            className="flex h-5 w-5 items-center justify-center rounded-md border-2 transition-all duration-200"
+            className="flex h-[18px] w-[18px] items-center justify-center rounded-[5px] border-2 transition-all duration-200"
             style={{
               borderColor: isSelected ? "#C2954F" : "rgba(234,229,220,0.2)",
               background: isSelected ? "#C2954F" : "transparent",
@@ -158,17 +158,17 @@ export function SelectableCourseCard({
         </div>
 
         {/* Status badge + Info button */}
-        <div className="mt-0.5 flex flex-shrink-0 items-center gap-1.5">
+        <div className="mt-0.5 flex flex-shrink-0 flex-col items-end gap-1">
           {isEnrolled ? (
             <span
-              className="rounded-full px-2 py-0.5 text-[10px] font-semibold"
+              className="rounded-full px-1.5 py-0.5 text-[9px] font-semibold"
               style={{ background: "rgba(72,117,191,0.15)", color: "#4875BF" }}
             >
               신청완료
             </span>
           ) : course.isFull ? (
             <span
-              className="rounded-full px-2 py-0.5 text-[10px] font-semibold"
+              className="rounded-full px-1.5 py-0.5 text-[9px] font-semibold"
               style={{ background: "rgba(207,80,80,0.15)", color: "#CF5050" }}
             >
               마감
@@ -181,12 +181,12 @@ export function SelectableCourseCard({
                 e.stopPropagation();
                 onDetail(course.id);
               }}
-              className="text-warm-gray hover:text-ivory flex-shrink-0 rounded-full p-1 transition-colors"
+              className="text-warm-gray hover:text-ivory flex-shrink-0 rounded-full p-0.5 transition-colors"
               aria-label="강의 상세보기"
             >
               <svg
-                width="16"
-                height="16"
+                width="14"
+                height="14"
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="currentColor"
@@ -223,7 +223,7 @@ export function PreviewCourseCard({
 }: PreviewCourseCardProps) {
   return (
     <div
-      className="relative overflow-hidden rounded-2xl border p-4"
+      className="relative overflow-hidden rounded-xl border p-3"
       style={{
         background: "#121620",
         borderColor: "rgba(194,149,79,0.15)",

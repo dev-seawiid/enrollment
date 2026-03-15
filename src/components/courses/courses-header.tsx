@@ -33,50 +33,46 @@ export function CoursesHeader({ sort, onSortChange }: CoursesHeaderProps) {
 
   return (
     <header
-      className="fixed top-0 left-1/2 z-40 w-full max-w-[430px] -translate-x-1/2 px-5 backdrop-blur-xl"
+      className="fixed top-0 left-1/2 z-40 w-full max-w-[430px] -translate-x-1/2 px-3 backdrop-blur-xl"
       style={{
         paddingTop: "env(safe-area-inset-top, 0px)",
         background: "rgba(8, 9, 14, 0.1)",
         borderBottom: "1px solid rgba(234, 229, 220, 0.06)",
       }}
     >
-      <div className="flex h-14 items-center justify-between">
+      <div className="flex h-12 items-center justify-between gap-2">
         <h1
-          className="text-gold text-2xl font-semibold"
+          className="text-gold flex-shrink-0 text-xl font-semibold"
           style={{ fontFamily: "var(--font-playfair)" }}
         >
           수강신청
         </h1>
 
-        <div className="flex items-center gap-2">
+        <div className="flex min-w-0 items-center gap-1.5">
           {status === "loading" ? (
-            <div className="flex items-center gap-2">
-              <Skeleton className="h-5 w-14 rounded" />
-              <Skeleton className="h-5 w-10 rounded-full" />
-              <Skeleton className="h-7 w-16 rounded-lg" />
+            <div className="flex items-center gap-1.5">
+              <Skeleton className="h-4 w-12 rounded" />
+              <Skeleton className="h-4 w-8 rounded-full" />
+              <Skeleton className="h-6 w-14 rounded-lg" />
             </div>
           ) : user ? (
             <>
-              <div className="flex items-center gap-1.5">
-                <span className="text-ivory text-xs font-medium">{user.name}</span>
-                <span
-                  className="rounded-full px-1.5 py-0.5 text-[10px] font-medium"
-                  style={{
-                    background:
-                      user.role === "INSTRUCTOR"
-                        ? "rgba(72,117,191,0.15)"
-                        : "rgba(56,190,163,0.15)",
-                    color: user.role === "INSTRUCTOR" ? "#4875BF" : "#38BEA3",
-                  }}
-                >
-                  {user.role === "INSTRUCTOR" ? "강사" : "수강생"}
-                </span>
-              </div>
+              <span className="text-ivory truncate text-[11px] font-medium">{user.name}</span>
+              <span
+                className="flex-shrink-0 rounded-full px-1.5 py-0.5 text-[10px] font-medium"
+                style={{
+                  background:
+                    user.role === "INSTRUCTOR" ? "rgba(72,117,191,0.15)" : "rgba(56,190,163,0.15)",
+                  color: user.role === "INSTRUCTOR" ? "#4875BF" : "#38BEA3",
+                }}
+              >
+                {user.role === "INSTRUCTOR" ? "강사" : "수강생"}
+              </span>
 
               <m.button
                 onClick={handleLogout}
                 whileTap={{ scale: 0.95 }}
-                className="rounded-lg border px-2.5 py-1.5 text-xs font-medium transition-colors"
+                className="flex-shrink-0 rounded-md border px-2 py-1 text-[11px] font-medium transition-colors"
                 style={{ borderColor: "rgba(234,229,220,0.12)", color: "#7A7684" }}
               >
                 로그아웃
@@ -86,7 +82,7 @@ export function CoursesHeader({ sort, onSortChange }: CoursesHeaderProps) {
                 <Link href="/courses/new">
                   <m.div
                     whileTap={{ scale: 0.95 }}
-                    className="flex items-center gap-1 rounded-lg border px-2.5 py-1.5 text-xs font-semibold"
+                    className="flex flex-shrink-0 items-center gap-0.5 rounded-md border px-2 py-1 text-[11px] font-semibold"
                     style={{
                       background: "rgba(194,149,79,0.08)",
                       borderColor: "rgba(194,149,79,0.3)",
@@ -94,7 +90,7 @@ export function CoursesHeader({ sort, onSortChange }: CoursesHeaderProps) {
                     }}
                   >
                     <span>+</span>
-                    <span>강의 개설</span>
+                    <span>개설</span>
                   </m.div>
                 </Link>
               ) : null}
@@ -103,7 +99,7 @@ export function CoursesHeader({ sort, onSortChange }: CoursesHeaderProps) {
             <Link href="/login">
               <m.div
                 whileTap={{ scale: 0.95 }}
-                className="rounded-lg border px-3 py-1.5 text-xs font-semibold"
+                className="rounded-md border px-2.5 py-1 text-[11px] font-semibold"
                 style={{
                   background: "rgba(194,149,79,0.08)",
                   borderColor: "rgba(194,149,79,0.3)",
@@ -118,14 +114,18 @@ export function CoursesHeader({ sort, onSortChange }: CoursesHeaderProps) {
       </div>
 
       {/* Sort tabs */}
-      <div className="flex gap-1 overflow-x-auto pt-1 pb-3" role="tablist" aria-label="정렬 기준">
+      <div
+        className="-mx-3 flex gap-0.5 overflow-x-auto px-3 pt-0.5 pb-2.5"
+        role="tablist"
+        aria-label="정렬 기준"
+      >
         {SORT_OPTIONS.map(({ key, label }) => (
           <button
             key={key}
             role="tab"
             aria-selected={sort === key}
             onClick={() => onSortChange(key)}
-            className="relative flex-shrink-0 rounded-full px-3.5 py-2 text-xs font-medium transition-colors duration-200"
+            className="relative flex-shrink-0 rounded-full px-3 py-1.5 text-[11px] font-medium transition-colors duration-200"
             style={{ color: sort === key ? "#DDB978" : "#7A7684" }}
           >
             {sort === key && (

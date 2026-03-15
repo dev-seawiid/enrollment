@@ -29,7 +29,7 @@ export function CourseList({
 }: CourseListProps) {
   if (isLoading) {
     return (
-      <ul className="space-y-3">
+      <ul className="space-y-2.5">
         {Array.from({ length: 4 }, (_, i) => (
           <li key={i}>
             <CourseCardSkeleton />
@@ -55,7 +55,7 @@ export function CourseList({
         - 가상화 적용 시 scroll restoration, 브라우저 검색(Ctrl+F), 접근성 이슈 발생
         - 성능 저하가 측정되면 그때 react-virtuoso로 전환 (이미 설치됨)
       */}
-      <ul className="space-y-3" aria-label="강의 목록">
+      <ul className="space-y-2.5" aria-label="강의 목록">
         {courses.map((course) => (
           <m.li
             key={course.id}
