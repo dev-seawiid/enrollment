@@ -95,7 +95,9 @@ function generateCourses(count: number) {
   });
 }
 
-const MOCK_COURSES = generateCourses(1000);
+const MOCK_COURSES = generateCourses(1000).sort(
+  (a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime(),
+);
 
 const enrolled = new Set<string>();
 
